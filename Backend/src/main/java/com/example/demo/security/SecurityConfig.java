@@ -22,14 +22,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth ->
-                {auth.requestMatchers("/api/auth/**").permitAll()
+                {auth.requestMatchers("/api/auth/**", "/").permitAll()
                         .requestMatchers("/api/test/**").permitAll()
                         .anyRequest().authenticated();})
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .oauth2Login(oauth2 -> oauth2
                         .loginPage("/oauth2/authorization/google")
-                        .defaultSuccessUrl("/loginSuccess", true)
-                        .failureUrl("/loginFailure"));
+                                .defaultSuccessUrl("/loginSuccess", true)
+                                .failureUrl("/loginFailure")
+                        );
 
         return http.build();
     }
