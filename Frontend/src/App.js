@@ -7,20 +7,28 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
 import LoginSignup from './Components/LoginSignup/LoginSignup.jsx'
 import Home from './Components/pages/Home.jsx';
+import AdminPage from './Components/pages/AdminPage.jsx'
+import BorrowerPage from './Components/pages/BorrowerPage.jsx'
+import BookPage from './Components/pages/BookPage.jsx'
+import { withAuthHeader } from './Components/utils/auth.js';
+import About from './Components/pages/About.jsx';
+import Contact from './Components/pages/Contact.jsx';
+import Profile from './Components/pages/Profile.jsx';
 
 function App() {
   const [isAuthenticated, setisAuthenticated]= useState(false);
   const cookie=new Cookies();
   useEffect(() => {
-    axios.get('http://localhost:8086/api/auth/check')
+    axios.get('http://localhost:8086/check', {
+      headers: withAuthHeader()
+      })
         .then(response => {
-          console.log("Authenticated got response")
-            login();
-
+          console.log("Authenticated got response");
+          setisAuthenticated(true);
         })
         .catch(error => {
             console.error('Error signin:', error);
-            logout();
+            setisAuthenticated(false);
         });
 }, []);
 
@@ -33,7 +41,14 @@ function App() {
     <Router>
             <Routes>
                 <Route path="/" element={{...isAuthenticated? <Navigate to="/home"/>: <LoginSignup login={login} logout={logout}/>}} />
-                <Route path="/home"  element={<Home logout={logout}/>}/>
+                {/* <Route path="/home" element={<Home/>}/> */}
+                <Route path="/home"  element={{...isAuthenticated?<Home logout={logout}/>:<Navigate to="/"/>}}/>
+                <Route path="/admin" element={{...isAuthenticated?<AdminPage/>:<Navigate to="/"/>}}/>
+                <Route path="/book/:id" element={{...isAuthenticated?<BookPage/>:<Navigate to="/"/>}}/>
+                <Route path="/borrow" element={{...isAuthenticated?<BorrowerPage/>:<Navigate to="/"/>}}/>
+                <Route path="/about" element={{...isAuthenticated?<About/>:<Navigate to="/"/>}}/>
+                <Route path="/contact" element={{...isAuthenticated?<Contact/>:<Navigate to="/"/>}}/>
+                <Route path="/profile" element={{...isAuthenticated?<Profile/>:<Navigate to="/"/>}}/>
             </Routes>
     </Router>
   );
@@ -44,22 +59,3 @@ export default App;
 
 
 
-
-//   useEffect(() => {
-//     const checkAuthentication = async () => {
-//         try {
-//             const response = await axios.get('http://localhost:8086/api/check');
-//             if (response.data.authenticated) {
-//                 login();
-//             } else {
-//                 logout();
-//             }
-//         } catch (error) {
-//             logout();
-//         }
-//     };
-
-//     checkAuthentication();
-// }, []);
-//element={{...isAuthenticated?<Home logout={logout}/>:<Navigate to="/"/>}}
-//, useEffect

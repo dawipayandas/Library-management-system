@@ -1,17 +1,20 @@
-/* .body{
-    background-color: blueviolet;
+.home-body{
+    /* background-color: rgb(156, 152, 160); */
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-} */
+}
 
-/* .container{
+.home-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: large;
     font-weight: 700;
-    display: flex;
     margin: 0 auto;
     border-radius: 0;
     flex-direction: column;
-} */
+    background-color: #fff;
+}

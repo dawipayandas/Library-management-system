@@ -9,6 +9,7 @@ import Cookies from 'universal-cookie';
 
 import './LoginSignup.css';
 
+
 import user_icon from '../Assets/person.png';
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
@@ -19,6 +20,7 @@ const LoginSignup = ({login},{logout}) => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [role, setrole] = useState(['']);
     const [message, setMessage] = useState('');
     
     const navigate = useNavigate();
@@ -28,7 +30,7 @@ const LoginSignup = ({login},{logout}) => {
         e.preventDefault();
         if (action === "Sign Up") {
             try {
-                await axios.post('http://localhost:8086/api/auth/signup', { username, email, password }, { withCredentials: true });
+                await axios.post('http://localhost:8086/api/auth/signup', { username, email, password, role }, { withCredentials: true });
                 setMessage('Signup successful! Please login.');
                 setaction('Login');
             } catch (error) {
@@ -44,7 +46,13 @@ const LoginSignup = ({login},{logout}) => {
                 cookie.set('token', response.data.token, {expires: new Date(decoded.exp * 1000)} );
                 setMessage('Login successful!');
                 login();
+                // role == ["user"] ? navigate('/home'): navigate('/admin');
+                // const temp = response.data.roles;
+                const temp= ["ROLE_USER"];
+                if(JSON.stringify(temp)=== JSON.stringify(response.data.roles))
                 navigate('/home');
+                else
+                navigate('/admin');
             } catch (error) {
                 
                 setMessage('Login failed. Please try again.');
@@ -57,15 +65,9 @@ const LoginSignup = ({login},{logout}) => {
 
      const userExists = (username)=>{
         const exists = axios.post('http://localhost:8086/api/auth/exists', { username}, { withCredentials: true });
-        // console.log(exists.data);
+
         return (exists.data);
      };
-
-
-
-    //   const generatePassword = () => {
-    //     return Math.random().toString(36).slice(-8); // Simple random password
-    //   };
 
 
       const registerUser= async(username, email, password)=>{
@@ -82,7 +84,7 @@ const LoginSignup = ({login},{logout}) => {
         try {
             const response = await axios.post('http://localhost:8086/api/auth/signin', { username, password }, { withCredentials: true });
             console.log(response.data); // Log the response data
-            // localStorage.setItem('token', response.data.token);
+            
             const decoded= jwtDecode(response.data.token);
             console.log(decoded);
             cookie.set('token', response.data.token, {expires: new Date(decoded.exp * 1000)} );
@@ -101,15 +103,15 @@ const LoginSignup = ({login},{logout}) => {
     return (
         <GoogleOAuthProvider clientId="189301073909-6ulqhvhdbq747ch62vebuejs2no2nk19.apps.googleusercontent.com">
         
-           
-            <div className="container">
-                <div className="header">
-                    <div className="text">{action}</div>
-                    <div className="underline"></div>
+           <div className="auth-body">
+            <div className="auth-container">
+                <div className="auth-header">
+                    <div className="auth-text">{action}</div>
+                    <div className="auth-underline"></div>
                 </div>
                 {message ? console.log(message):<div></div>}
-                <form className="inputs" onSubmit={handleSubmit}> 
-                    <div className="input">
+                <form className="auth-inputs" onSubmit={handleSubmit}> 
+                    <div className="auth-input">
                         <img src={user_icon} alt="User Icon" />
                         <input 
                             type="text"
@@ -120,7 +122,7 @@ const LoginSignup = ({login},{logout}) => {
                         />
                     </div>
                     {action === "Sign Up" ?
-                        <div className="input">
+                        <div className="auth-input">
                             <img src={email_icon} alt="Email Icon" />
                             <input
                                 type="email"
@@ -131,7 +133,7 @@ const LoginSignup = ({login},{logout}) => {
                             />
                         </div>:<div></div>
                     }
-                    <div className="input">
+                    <div className="auth-input">
                         <img src={password_icon} alt="Password Icon" />
                         <input
                             type="password"
@@ -141,12 +143,37 @@ const LoginSignup = ({login},{logout}) => {
                             required
                         />
                     </div>
-                    <div className="submit-container">
-                        <button className={action==="Login"?"submit grey":"submit"} onClick={()=>{setaction("Sign Up")}} type="submit">Sign Up</button>
-                        <button className={action==="Sign Up"?"submit grey":"submit"} onClick={()=>{setaction("Login")}} type="submit">Login</button>
+                    {action==="Sign Up"?<div className="auth-role">
+                    <div>
+                        <input
+                            type="radio"
+                            name="role"
+                            id="user"
+                            value="user"
+                            defaultChecked
+                            onClick={() => setrole(["user"])}
+                        />
+                        <label htmlFor="user" className="auth-role-radio">USER</label>
+                    </div>
+                    <div>
+                        <input
+                            type="radio"
+                            name="role"
+                            id="admin"
+                            value="admin"
+                            onClick={() => setrole(["admin"])}
+                        />
+                        <label htmlFor="admin">ADMIN</label>
+                    </div>
+
+                        
+                    </div>:<div></div>}
+                    <div className="auth-submit-container">
+                        <button className={action==="Login"?"auth-submit grey":"auth-submit"} onClick={()=>{setaction("Sign Up")}} type="submit">Sign Up</button>
+                        <button className={action==="Sign Up"?"auth-submit grey":"auth-submit"} onClick={()=>{setaction("Login")}} type="submit">Login</button>
                     </div>
                 </form>
-                <div className='google-logo'>
+                <div className="auth-google-logo">
                         <GoogleLogin
                         onSuccess={credentialResponse => {
                             console.log("google response:",credentialResponse);
@@ -157,8 +184,7 @@ const LoginSignup = ({login},{logout}) => {
                             const password = " ";
                             console.log("decoded google response username:", username);
                             console.log("decoded google response pass:", password);
-                            // const exist = userExists(username);
-                            // console.log(exist);
+                            
                             if(!userExists(username))
                             registerUser(username, email, password);
                             console.log("Back to function");
@@ -171,6 +197,7 @@ const LoginSignup = ({login},{logout}) => {
                 </div>
             </div>
             
+         </div>
         
         </GoogleOAuthProvider>
     );
