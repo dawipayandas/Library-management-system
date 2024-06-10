@@ -31,6 +31,13 @@ class BookService {
             headers: withAuthHeader()
         });
     }
+
+    getBookbyIsbn(isbn){
+        return axios.get(`${API_URL}/isbn/${isbn}`, {
+            headers: withAuthHeader()
+        });
+    }
 }
 
-export default new BookService();
+const bookServiceInstance = new BookService();
+export default bookServiceInstance;

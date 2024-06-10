@@ -8,7 +8,7 @@ import HomeFooter from './HomeFooter.jsx';
 const Home = ({ logout }) => {
   return (
     <div className="home-body">
-      <HomeNavbar />
+      <HomeNavbar logout={logout}/>
       <BorrowerPage/>
       {/* <AdminPage/> */}
       <HomeFooter/>

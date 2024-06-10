@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import './HomeNavbar.css'
 
-const HomeNavbar = () => {
+const HomeNavbar = ({logout}) => {
   return (
         
       <nav className='home-navbar'>
@@ -20,6 +20,8 @@ const HomeNavbar = () => {
         
         
           <NavLink to="/profile" className="nav-navlink">Profile</NavLink>
+
+          <button onClick={logout}>Logout</button>
         
       </ul>
     </nav>

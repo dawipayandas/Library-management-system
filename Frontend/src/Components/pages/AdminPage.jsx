@@ -1,10 +1,13 @@
 // src/components/AdminPage.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import BookService from '../../services/BookService';
+import { CloudinaryContext } from 'cloudinary-react';
+import axios from 'axios';
 
 function AdminPage() {
     const [books, setBooks] = useState([]);
-    const [newBook, setNewBook] = useState({ title: '', author: '', description: '', copies: 0 });
+    const [newBook, setNewBook] = useState({ title: '', author: '', description: '', isbn: '', genre: '', copies: 0, imageUrl: '' });
+    const fileInputRef = useRef(null);
 
     useEffect(() => {
         loadBooks();
@@ -22,9 +25,22 @@ function AdminPage() {
     };
 
     const addBook = () => {
+        if (!newBook.imageUrl) {
+            alert('Please upload an image before adding the book.');
+            return;
+        }
+        if (!newBook.title) {
+            alert('Please title an image before adding the book.');
+            return;
+        }
+        if (!newBook.genre) {
+            alert('Please genre an image before adding the book.');
+            return;
+        }
         BookService.addBook(newBook).then(() => {
             loadBooks();
-            setNewBook({ title: '', author: '', description: '', copies: 0 });
+            setNewBook({ title: '', author: '', description: '', isbn: '', genre: '', copies: 0, imageUrl: '' });
+            fileInputRef.current.value = '';
         });
     };
 
@@ -40,15 +56,38 @@ function AdminPage() {
         });
     };
 
+    const handleUpload = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('file', e.target.files[0]);
+        formData.append('upload_preset', 'oefdtqoc');
+        
+        try {
+            const response = await axios.post('https://api.cloudinary.com/v1_1/duvofudxs/image/upload', formData);
+            const uploadedImageUrl = response.data.secure_url;
+            setNewBook({ ...newBook, imageUrl: uploadedImageUrl });
+            console.log(uploadedImageUrl);
+        } catch (error) {
+            console.log('Error uploading the image:', error);
+        }
+    };
+
     return (
         <div>
             <h1>Admin Page</h1>
             <div>
                 <h2>Add New Book</h2>
+
+                <CloudinaryContext cloudName="duvofudxs">
+                        <input type="file" onChange={handleUpload} ref={fileInputRef}/>
+                </CloudinaryContext>
+
                 <input type="text" name="title" value={newBook.title} onChange={handleInputChange} placeholder="Title" />
                 <input type="text" name="author" value={newBook.author} onChange={handleInputChange} placeholder="Author" />
+                <input type="text" name="isbn" value={newBook.isbn} onChange={handleInputChange} placeholder="ISBN" />
+                <input type="text" name="genre" value={newBook.genre} onChange={handleInputChange} placeholder="Genre" />
                 <textarea name="description" value={newBook.description} onChange={handleInputChange} placeholder="Description"></textarea>
-                <input type="number" name="copies" value={newBook.copiesAvailable} onChange={handleInputChange} placeholder="Copies Available" />
+                <input type="number" name="copies" value={newBook.copies} onChange={handleInputChange} placeholder="Copies Available" />
                 <button onClick={addBook}>Add Book</button>
             </div>
             <div>
@@ -58,7 +97,7 @@ function AdminPage() {
                         <li key={book.id}>
                             {book.title} by {book.author}
                             <button onClick={() => deleteBook(book.id)}>Delete</button>
-                            <button onClick={() => updateBook(book.id, { ...book, copiesAvailable: book.copiesAvailable + 1 })}>Increase Copies</button>
+                            <button onClick={() => updateBook(book.id, { ...book, copies: book.copies + 1 })}>Increase Copies</button>
                         </li>
                     ))}
                 </ul>
