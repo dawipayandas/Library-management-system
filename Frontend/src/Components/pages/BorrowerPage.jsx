@@ -12,11 +12,14 @@ function BorrowerPage() {
     useEffect(() => {
         loadBooks();
     }, []);
+    
 
     const loadBooks = () => {
         BookService.getAllBooks().then((response) => {
+            console.log(typeof(response.data));// shows object
             console.log(response.data);
             setBooks(response.data);
+            // console.log(typeof(books));//shows string
         });
     };
     const isbnsearch= async(e)=>{
@@ -54,6 +57,7 @@ function BorrowerPage() {
                             <p>Copies Available: {book.copies}</p>
                         </li>
                     ))}
+                    
                 </ul>
             </div>
         </div>

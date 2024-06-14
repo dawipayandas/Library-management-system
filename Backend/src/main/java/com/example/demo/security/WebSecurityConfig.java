@@ -2,7 +2,7 @@ package com.example.demo.security;
 
 
 
-import com.example.demo.AuthTokenFilter;
+import com.example.demo.services.AuthTokenFilter;
 import com.example.demo.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,14 +16,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserRequest;
-import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
-import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
-import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import static org.springframework.security.config.Customizer.withDefaults;
 
 
 @Configuration
@@ -61,18 +56,14 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    public OAuth2UserService<OidcUserRequest, OidcUser> oauth2UserService() {
-//        DefaultOAuth2UserService delegate = new DefaultOAuth2UserService();
-//        return new CustomOAuth2UserService(delegate);
-//    }
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth ->
-                {auth.requestMatchers("/api/auth/**", "/").permitAll()
-                                .requestMatchers("/api/test/**").permitAll()
+                {auth.requestMatchers("/api/auth/**", "/api/test/**").permitAll()
+//                                .requestMatchers("/api/test/**").permitAll()
                                 .anyRequest().authenticated();})
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));                ;
@@ -81,17 +72,8 @@ public class WebSecurityConfig {
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
-//        http.oauth2Login(oauth2 -> oauth2
-//                .loginPage("/oauth2/authorization/google")
-//                .defaultSuccessUrl("/loginSuccess", true)
-//                .failureUrl("/loginFailure")
-//                .userInfoEndpoint(userInfo -> userInfo
-//                        .userService(oauth2UserService())));
+
 
         return http.build();
     }
 }
-//.authenticationEntryPoint((request, response, authException) -> {
-//                            // Redirect to the login page
-//                            response.sendRedirect("/oauth2/authorization/google");
-//                        }

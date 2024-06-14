@@ -20,6 +20,6 @@ public class RoleController {
         return roleService.getAllRoles();
     }
 
-    // Other endpoints related to roles can be added here...
+
 
 }

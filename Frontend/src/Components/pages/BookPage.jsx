@@ -5,6 +5,7 @@ import BookService from '../../services/BookService';
 import HomeNavbar from './HomeNavbar';
 import HomeFooter from './HomeFooter';
 import './BookPage.css'
+import ReviewBook from './ReviewBook';
 
 function BookPage() {
     const { id } = useParams();
@@ -28,6 +29,7 @@ function BookPage() {
             <p><b>Description:</b>{book.description}</p>
             <h3>Copies Available: {book.copies}</h3>
             </div>
+            <ReviewBook bookId={id}/>
             <HomeFooter/>
         </div>
     );
