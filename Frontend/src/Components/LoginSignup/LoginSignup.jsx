@@ -42,7 +42,7 @@ const LoginSignup = ({login},{logout}) => {
                 console.log(response.data); // Log the response data
                 // localStorage.setItem('token', response.data.token);
                 const decoded= jwtDecode(response.data.token);
-                console.log(decoded);
+                console.log("Decoded JWT:", decoded);
                 cookie.set('token', response.data.token, {expires: new Date(decoded.exp * 1000)} );
                 setMessage('Login successful!');
                 login();

@@ -6,16 +6,19 @@ import HomeNavbar from './HomeNavbar';
 import HomeFooter from './HomeFooter';
 import './BookPage.css'
 import ReviewBook from './ReviewBook';
+import UpvoteButton from './UpvoteButton';
 
 function BookPage() {
     const { id } = useParams();
     const [book, setBook] = useState(null);
+
 
     useEffect(() => {
         BookService.getBookById(id).then((response) => {
             setBook(response.data);
         });
     }, [id]);
+
 
     if (!book) return <div>Loading...</div>;
 
@@ -29,6 +32,7 @@ function BookPage() {
             <p><b>Description:</b>{book.description}</p>
             <h3>Copies Available: {book.copies}</h3>
             </div>
+            <UpvoteButton bookId={id}/>
             <ReviewBook bookId={id}/>
             <HomeFooter/>
         </div>

@@ -26,3 +26,8 @@
 .book-page-parent p{
     margin: 0 auto;
 }
+
+.vote-text{
+    font-weight: 500;
+    color: #7a7c7c;
+}
