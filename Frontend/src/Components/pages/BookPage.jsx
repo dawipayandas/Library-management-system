@@ -7,6 +7,7 @@ import HomeFooter from './HomeFooter';
 import './BookPage.css'
 import ReviewBook from './ReviewBook';
 import UpvoteButton from './UpvoteButton';
+import SimilarBooks from './SimilarBooks';
 
 function BookPage() {
     const { id } = useParams();
@@ -16,6 +17,7 @@ function BookPage() {
     useEffect(() => {
         BookService.getBookById(id).then((response) => {
             setBook(response.data);
+            console.log(response.data);
         });
     }, [id]);
 
@@ -29,11 +31,14 @@ function BookPage() {
             <img src={book.imageUrl} alt="UPLOAD" className='book-icon-large'/>
             <h1>{book.title}</h1>
             <h2>by {book.author}</h2>
+            <h4>Genre: {book.genre}</h4>
+            <h4>ISBN: {book.isbn}</h4>
             <p><b>Description:</b>{book.description}</p>
             <h3>Copies Available: {book.copies}</h3>
             </div>
             <UpvoteButton bookId={id}/>
             <ReviewBook bookId={id}/>
+            <SimilarBooks bookId={id}/>
             <HomeFooter/>
         </div>
     );

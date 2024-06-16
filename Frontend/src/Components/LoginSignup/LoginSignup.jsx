@@ -39,10 +39,7 @@ const LoginSignup = ({login},{logout}) => {
         } else {
             try {
                 const response = await axios.post('http://localhost:8086/api/auth/signin', { username, password }, { withCredentials: true });
-                console.log(response.data); // Log the response data
-                // localStorage.setItem('token', response.data.token);
                 const decoded= jwtDecode(response.data.token);
-                console.log("Decoded JWT:", decoded);
                 cookie.set('token', response.data.token, {expires: new Date(decoded.exp * 1000)} );
                 setMessage('Login successful!');
                 login();
@@ -83,10 +80,8 @@ const LoginSignup = ({login},{logout}) => {
       const loginUser=async(username, password)=>{
         try {
             const response = await axios.post('http://localhost:8086/api/auth/signin', { username, password }, { withCredentials: true });
-            console.log(response.data); // Log the response data
             
             const decoded= jwtDecode(response.data.token);
-            console.log(decoded);
             cookie.set('token', response.data.token, {expires: new Date(decoded.exp * 1000)} );
             setMessage('Login successful!');
             login();
@@ -176,22 +171,16 @@ const LoginSignup = ({login},{logout}) => {
                 <div className="auth-google-logo">
                         <GoogleLogin
                         onSuccess={credentialResponse => {
-                            console.log("google response:",credentialResponse);
                             const googleUser = jwtDecode(credentialResponse.credential);
-                            console.log(googleUser);
                             const username = googleUser.email;
                             const email = googleUser.email;
                             const password = " ";
-                            console.log("decoded google response username:", username);
-                            console.log("decoded google response pass:", password);
-                            
                             if(!userExists(username))
                             registerUser(username, email, password);
-                            console.log("Back to function");
                             loginUser(username, password);
                         }}
                         onError={() => {
-                            console.log('Login Failed');
+                            console.log('Login Failed:');
                         }}
                         />
                 </div>
@@ -205,4 +194,3 @@ const LoginSignup = ({login},{logout}) => {
 
 export default LoginSignup;
 
-//eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXdhIiwiaWF0IjoxNzE3NDYyNDg4LCJleHAiOjE3MTc1NDg4ODh9.Z2r3zIKn5aP2l7WfITfVCiIgqf6A8Vc7AGpEwQ0v1bc

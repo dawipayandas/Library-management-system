@@ -26,6 +26,9 @@
 .book-page-parent p{
     margin: 0 auto;
 }
+.book-page-parent h4{
+    margin: 0 auto;
+}
 
 .vote-text{
     font-weight: 500;

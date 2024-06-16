@@ -16,20 +16,13 @@ function BorrowerPage() {
 
     const loadBooks = () => {
         BookService.getAllBooks().then((response) => {
-            console.log(typeof(response.data));// shows object
-            console.log(response.data);
             setBooks(response.data);
-            // console.log(typeof(books));//shows string
         });
     };
     const isbnsearch= async(e)=>{
         e.preventDefault();
-        // console.log(isbn);
-        // setIsbn('');
         try{
             BookService.getBookbyIsbn(isbn).then((response)=>{
-                console.log(response.data);
-                // navigate(`/book/{id}`);
                 navigate(`/book/${response.data.id}`);
                  setIsbn('');
             })

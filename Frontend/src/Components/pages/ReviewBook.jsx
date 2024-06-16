@@ -7,20 +7,22 @@ const ReviewBook = ({bookId}) => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
+        const loadReviews = async () => {
+            try {
+                const response = await axios.get(
+                    `http://localhost:8086/reviews/book/${bookId}`, 
+                    { headers: withAuthHeader() }
+                );
+                setReviews(response.data);
+            } catch (error) {
+                console.log("Error loading reviews:", error);
+            }
+        }
+        
         loadReviews();
     }, []);
 
-    const loadReviews = async () => {
-        try {
-            const response = await axios.get(
-                `http://localhost:8086/reviews/book/${bookId}`, 
-                { headers: withAuthHeader() }
-            );
-            setReviews(response.data);
-        } catch (error) {
-            console.log("Error loading reviews:", error);
-        }
-    }
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();

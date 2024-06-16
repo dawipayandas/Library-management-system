@@ -1,9 +1,9 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Book;
-import com.example.demo.models.Review;
+
 import com.example.demo.services.BookService;
-import com.example.demo.services.ReviewService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +44,11 @@ public class BookController {
     @GetMapping("/isbn/{isbn}")
     public Book findByIsbn(@PathVariable String isbn){
         return bookService.getBookByIsbn(isbn);
+    }
+
+    @GetMapping("/genre/{bookId}")
+    public List<Book> findByGenre(@PathVariable Long bookId){
+        return bookService.getBookByGenre(bookId);
     }
 
 
