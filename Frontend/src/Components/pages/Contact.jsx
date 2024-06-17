@@ -1,12 +1,13 @@
 import React from 'react'
 import HomeNavbar from './HomeNavbar'
 import HomeFooter from './HomeFooter'
+import './Contact.css'
 
 const Contact = () => {
   return (
-    <div>
-        <HomeNavbar/>
-      Contact
+    <div className='contact-parent'>
+      <HomeNavbar/>
+       Contact
       <HomeFooter/>
     </div>
   )

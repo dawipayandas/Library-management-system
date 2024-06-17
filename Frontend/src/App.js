@@ -14,6 +14,7 @@ import { withAuthHeader } from './Components/utils/auth.js';
 import About from './Components/pages/About.jsx';
 import Contact from './Components/pages/Contact.jsx';
 import Profile from './Components/pages/Profile.jsx';
+import Issue from './Components/pages/Issue.jsx';
 
 function App() {
   const [isAuthenticated, setisAuthenticated]= useState(false);
@@ -41,7 +42,6 @@ function App() {
     <Router>
             <Routes>
                 <Route path="/" element={{...isAuthenticated? <Navigate to="/home"/>: <LoginSignup login={login} logout={logout}/>}} />
-                {/* <Route path="/home" element={<Home/>}/> */}
                 <Route path="/home"  element={{...isAuthenticated?<Home logout={logout}/>:<Navigate to="/"/>}}/>
                 <Route path="/admin" element={{...isAuthenticated?<AdminPage/>:<Navigate to="/"/>}}/>
                 <Route path="/book/:id" element={{...isAuthenticated?<BookPage/>:<Navigate to="/"/>}}/>
@@ -49,6 +49,7 @@ function App() {
                 <Route path="/about" element={{...isAuthenticated?<About/>:<Navigate to="/"/>}}/>
                 <Route path="/contact" element={{...isAuthenticated?<Contact/>:<Navigate to="/"/>}}/>
                 <Route path="/profile" element={{...isAuthenticated?<Profile/>:<Navigate to="/"/>}}/>
+                <Route path="/issue/:id" element={{...isAuthenticated?<Issue/>:<Navigate to="/"/>}}/>
             </Routes>
     </Router>
   );

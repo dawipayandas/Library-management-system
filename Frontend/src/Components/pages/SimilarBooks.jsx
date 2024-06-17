@@ -15,7 +15,6 @@ const SimilarBooks = ({ bookId }) => {
                     { headers: withAuthHeader() }
                 );
                 setBooks(response.data);
-                console.log(response.data);
             } catch (error) {
                 console.log("Error getting similar books:", error);
             }

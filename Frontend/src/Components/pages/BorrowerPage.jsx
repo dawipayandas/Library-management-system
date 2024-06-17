@@ -45,7 +45,7 @@ function BorrowerPage() {
                 <ul>
                     {books.map((book) => (
                         <li key={book.id}>
-                            <Link to={`/book/${book.id}`}><img src={book.imageUrl} alt="UPLOAD" className='book-icon-small'/></Link>
+                            <Link to={`/book/${book.id}`}><img src={book.imageUrl} alt="UPLOAD" className='book-icon-small'/></Link><br/>
                             <Link to={`/book/${book.id}`}>{book.title} by {book.author}</Link>
                             <p>Copies Available: {book.copies}</p>
                         </li>

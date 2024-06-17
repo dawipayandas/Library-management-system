@@ -1,6 +1,6 @@
 // src/components/BookPage.js
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import BookService from '../../services/BookService';
 import HomeNavbar from './HomeNavbar';
 import HomeFooter from './HomeFooter';
@@ -12,14 +12,19 @@ import SimilarBooks from './SimilarBooks';
 function BookPage() {
     const { id } = useParams();
     const [book, setBook] = useState(null);
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         BookService.getBookById(id).then((response) => {
             setBook(response.data);
-            console.log(response.data);
         });
     }, [id]);
+
+
+    const handleIssue = async () => {
+            navigate(`/issue/${book.id}`);
+    }
+    
 
 
     if (!book) return <div>Loading...</div>;
@@ -36,6 +41,7 @@ function BookPage() {
             <p><b>Description:</b>{book.description}</p>
             <h3>Copies Available: {book.copies}</h3>
             </div>
+            <button onClick={handleIssue}>Issue</button>
             <UpvoteButton bookId={id}/>
             <ReviewBook bookId={id}/>
             <SimilarBooks bookId={id}/>
