@@ -1,0 +1,150 @@
+.adminParent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.adminContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    padding: 20px;
+}
+
+.adminContainer h1{
+    margin: 0 auto;
+}
+
+.adminContainer h2{
+    color: #808080;
+}
+
+.adminContainer input, textarea{
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.addbook{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.addbook button{
+    padding: 10px 40px;
+    width: 100%;
+    color: #fff;
+    background-color: #1d4ed8;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: 500;
+    font-size: medium;
+    border: none;
+    border-radius: 5px;
+}
+
+.addbook button:hover{
+    background-color: #1944b8;
+    transform: translateY(-2px);
+}
+
+.showBook{
+    margin-top: 25px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.adminContainer ul li{
+    list-style: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.showBook{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.showBook p{
+    font-size: large;
+    font-weight: 500;
+}
+
+#copies{
+    font-size: medium;
+    font-weight: 400;
+}
+
+.showBook button{
+    padding: 10px 40px;
+    width: 40%;
+    color: #fff;
+    background-color: #1d4ed8;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: 500;
+    font-size: medium;
+    border-radius: 10px;
+    border: none;
+    margin-right: 10px;
+}
+
+#deletebutton{
+    background-color: #ff0000;
+}
+
+#increasebutton{
+    background-color: #28a745;
+}
+
+#deletebutton:hover{
+    background-color: #c20b0b;
+
+    transform: translateY(-2px);
+}
+
+#increasebutton:hover{
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.twobuttons{
+    display: flex;
+    justify-content: space-around;
+}
+
+/* .
+
+.showBook ul{
+    list-style: none;
+}
+
+.showBook p{
+    display: inline;
+    font-weight: 600;
+}
+
+.showBook button{
+    padding: 10px 80px;
+    margin-right: 10px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.eachul{
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 90%;
+} */

@@ -1,8 +1,18 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import './HomeNavbar.css'
+import { useContext } from 'react'
+import { counterContext } from '../../Context/context'
+import Cookies from 'universal-cookie'
 
-const HomeNavbar = ({logout}) => {
+const HomeNavbar = () => {
+  const value=useContext(counterContext)
+  const cookie= new Cookies();
+
+  const logout=()=>{
+    value.setisAuthenticated(false);
+    cookie.remove('token');
+  }
   return (
         
       <nav className='home-navbar'>
@@ -21,7 +31,7 @@ const HomeNavbar = ({logout}) => {
         
           <NavLink to="/profile" className="nav-navlink">Profile</NavLink>
 
-          <button onClick={logout}>Logout</button>
+          <button onClick={logout}>Logout </button>
         
       </ul>
     </nav>

@@ -6,6 +6,8 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from "jwt-decode";
 import Cookies from 'universal-cookie';
+import { useContext } from 'react';
+import { counterContext } from '../../Context/context';
 
 import './LoginSignup.css';
 
@@ -14,8 +16,8 @@ import user_icon from '../Assets/person.png';
 import email_icon from '../Assets/email.png';
 import password_icon from '../Assets/password.png';
 
-const LoginSignup = ({login},{logout}) => {
-    
+const LoginSignup = () => {
+    const value=useContext(counterContext);
     const [action, setaction] = useState("Sign Up");
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -31,8 +33,21 @@ const LoginSignup = ({login},{logout}) => {
         if (action === "Sign Up") {
             try {
                 await axios.post('http://localhost:8086/api/auth/signup', { username, email, password, role }, { withCredentials: true });
-                setMessage('Signup successful! Please login.');
-                setaction('Login');
+                setMessage('Signup successful!');
+                const response = await axios.post('http://localhost:8086/api/auth/signin', { username, password }, { withCredentials: true });
+                const decoded= jwtDecode(response.data.token);
+                cookie.set('token', response.data.token, {expires: new Date(decoded.exp * 1000)} );
+                // setMessage('Login successful!');
+                value.setisAuthenticated(true);
+                // role == ["user"] ? navigate('/home'): navigate('/admin');
+                // const temp = response.data.roles;
+                const temp= ["ROLE_USER"];
+                if(JSON.stringify(temp)=== JSON.stringify(response.data.roles))
+                navigate('/home');
+                else
+                navigate('/admin');
+                // setaction('Login');
+
             } catch (error) {
                 setMessage('Signup failed. Please try again.');
             }
@@ -42,7 +57,7 @@ const LoginSignup = ({login},{logout}) => {
                 const decoded= jwtDecode(response.data.token);
                 cookie.set('token', response.data.token, {expires: new Date(decoded.exp * 1000)} );
                 setMessage('Login successful!');
-                login();
+                value.setisAuthenticated(true);
                 // role == ["user"] ? navigate('/home'): navigate('/admin');
                 // const temp = response.data.roles;
                 const temp= ["ROLE_USER"];
@@ -84,7 +99,7 @@ const LoginSignup = ({login},{logout}) => {
             const decoded= jwtDecode(response.data.token);
             cookie.set('token', response.data.token, {expires: new Date(decoded.exp * 1000)} );
             setMessage('Login successful!');
-            login();
+            value.setisAuthenticated(true);
             navigate('/home');
         } catch (error) {
             

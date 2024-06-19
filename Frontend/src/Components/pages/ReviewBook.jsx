@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { withAuthHeader } from '../utils/auth';
+import './Review.css'
 
 const ReviewBook = ({bookId}) => {
     const [review, setReview] = useState({ title: '', description: '' });
@@ -41,26 +42,29 @@ const ReviewBook = ({bookId}) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <input 
-                    type="text" 
-                    value={review.title} 
-                    placeholder='Review Title' 
-                    onChange={(e) => setReview({ ...review, title: e.target.value })}
-                />
-                <textarea 
-                    name="description" 
-                    id="review-description" 
-                    placeholder='Give your Review' 
-                    onChange={(e) => setReview({ ...review, description: e.target.value })} 
-                    value={review.description}
-                ></textarea>
-                <button type='submit'>Submit</button>
-            </form>
-            <div>
+            <div className='Review-input'>
+                <form onSubmit={handleSubmit}>
+                    <p>Please give your valid feedback!</p>
+                    <input 
+                        type="text" 
+                        value={review.title} 
+                        placeholder='Review Title' 
+                        onChange={(e) => setReview({ ...review, title: e.target.value })}
+                    />
+                    <textarea 
+                        name="description" 
+                        id="review-description" 
+                        placeholder='Give your Review' 
+                        onChange={(e) => setReview({ ...review, description: e.target.value })} 
+                        value={review.description}
+                    ></textarea>
+                    <button type='submit'>Submit</button>
+                </form>
+            </div>
+            <div className='Reviews'>
                 <h2>Reviews:</h2>
                 {reviews.map((rev, index) => (
-                    <div key={index}>
+                    <div key={index} className='review-item'>
                         <h3>{rev.title}</h3>
                         <p>{rev.description}</p>
                     </div>

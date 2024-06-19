@@ -4,6 +4,7 @@ import Cookies from 'universal-cookie';
 import {jwtDecode} from 'jwt-decode';
 import axios from 'axios';
 import { withAuthHeader } from '../utils/auth';
+import './UpvoteButton.css'
 
 const UpvoteButton = ({ bookId }) => {
     const cookies = new Cookies();
@@ -38,10 +39,8 @@ const UpvoteButton = ({ bookId }) => {
 
     return (
         <div>
-            <button onClick={upvote}>
-                <div className='vote-text'>
+            <button onClick={upvote} className="upvoteButton">
                     {upvoted ? "Upvoted | " + upvotes : "Upvote | " + upvotes}
-                </div>
             </button>
         </div>
     );

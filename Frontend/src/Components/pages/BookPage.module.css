@@ -1,0 +1,79 @@
+/* BookPage.module.css */
+
+.bookicon {
+    width: 200px;  
+    height: auto;
+    object-fit: cover; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px #0000001a; 
+    margin: 20px;
+    justify-self: center;
+    align-self: center;
+}
+
+.bookpagecontainer {
+    display: grid;
+    grid-template-columns: 300px auto;
+    width: 80%;
+    margin: 50px auto;
+    gap: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+}
+
+.firstline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.right h3 {
+    color: #868080;    
+}
+
+.description {
+    border: 1px solid #868080;
+    padding: 15px;
+    margin: 20px 0;
+    display: grid;
+    grid-template-rows: 25px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px #0000001a;
+}
+
+.description p {
+    font-weight: bold;
+    margin: 0;
+    align-self: center;
+}
+
+.descriptionContent {
+    margin-top: 10px;
+}
+
+.issueButton {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    align-self: flex-start;
+}
+
+.issueButton:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+

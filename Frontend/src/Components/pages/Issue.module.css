@@ -1,0 +1,79 @@
+body{
+    background-color: #F5F5F5;
+    line-height: 2;
+}
+.bookIconLarge{
+    width: 150px;  
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    margin: 10px 0;
+}
+
+.issueParent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.issueContainer{
+    padding: 20px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 40%;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.issueContainer  div{
+    align-self: flex-start;
+}
+
+.issueContainer  div h4{
+    display: inline;
+}
+
+.details{
+    padding-left: 15px;
+}
+
+.issueContainer  div h3{
+    color: #808080;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.issueButtons{
+    display: flex;
+    justify-content:space-around;
+    width: 100%;
+}
+
+.issueButtons button{
+    padding: 15px 40px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#confirm{
+    background-color: #28a745;
+}
+#cancel{
+    background-color: #ff0000;
+}
+
+#confirm:hover{
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+#cancel:hover{
+    background-color: #ec0a0a;
+    transform: translateY(-2px);
+}

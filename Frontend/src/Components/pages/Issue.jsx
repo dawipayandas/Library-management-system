@@ -4,7 +4,7 @@ import axios from 'axios';
 import { withAuthHeader } from '../utils/auth';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'universal-cookie';
-import './Issue.css'
+import IssuePageCss from './Issue.module.css'
 
 
 const Issue = () => {
@@ -63,7 +63,7 @@ const Issue = () => {
         loadBook();
     }, [id]);
 
-    
+
 
     const handleIssue = async () => {
         try {
@@ -81,23 +81,41 @@ const Issue = () => {
         }
     }
 
+    const handelCancel=()=>{
+      navigate(`/book/${bookId}`);
+    }
     
     
     
   return (
-    <div>
+    <div className={IssuePageCss.issueParent}>
+    <div className={IssuePageCss.issueContainer}>
       <h2>Issue Confirmation Page</h2>
-        <h3>User Deatils:</h3>
-      <h4>Username: {user.username}</h4>
-      <h4>Email: {user.email}</h4><br/><br/>
-      <h3>Book Details:</h3>
-        <img src={book.imageUrl} alt="Upload" className='book-icon-large' />
-        <h4>Title: {book.title}</h4>
-        <h4>Author: {book.author}</h4>
-        
+      
+      <div>
+          <h3>User Deatils:</h3>
+          <div className={IssuePageCss.details}>
+        <h4>Username:</h4> {user.username}<br/>
+        <h4>Email:</h4> {user.email}<br/><br/>
+        </div>
+      </div>
 
-      <h4>Date of Issue: {date.day} {date.month} {date.year}</h4>
-        <button onClick={handleIssue}>Confirm</button>
+      <div>
+        <h3>Book Details:</h3>
+        <div className={IssuePageCss.details}>
+          <img src={book.imageUrl} alt="Upload" className={IssuePageCss.bookIconLarge} /><br/>
+          <h4>Title: </h4>{book.title}<br/>
+          <h4>Author: </h4>{book.author}<br/>
+          <h4>Date of Issue: </h4>{date.day} {date.month} {date.year}<br/><br/>
+        </div>
+      </div>
+        
+      <div className={IssuePageCss.issueButtons}>
+        <button onClick={handleIssue} id={IssuePageCss.confirm}>Confirm</button>
+        <button onClick={handelCancel}  id={IssuePageCss.cancel}>Cancel</button>
+      </div>
+
+    </div>
     </div>
   )
 }

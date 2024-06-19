@@ -1,0 +1,9 @@
+.upvoteButton{
+    padding: 10px 20px;
+    font-size: 13px;
+    color: #fff;
+    background-color: #909491;
+    border: none;
+    border-radius: 5px;
+    cursor:cell;
+}
