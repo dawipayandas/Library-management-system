@@ -1,9 +1,41 @@
-.book-icon-small {
-    width: 150px;  
-    height: 200px; 
-    object-fit: cover; 
-    border-radius: 5px; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-    margin-right: 10px; 
+
+.Similar-parent{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
 }
 
+.Similar-parent li{
+    list-style-type: none;
+    border: 1px solid #e0e0e0;
+    padding: 15px;  
+    display: flex;
+    align-items: center;
+}
+
+  
+  .book-icon-small {
+    width: 90px; 
+    height: auto;
+    margin-right: 10px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  }
+  
+ .Similar-parent a{
+    text-decoration: none;
+    color: rgb(97, 97, 97);
+    font-weight: 500;
+    font-size:large;
+    transition: 0.3s ease;
+ }
+
+ .Similar-parent a:hover{
+    color: #000000;
+    transform: translateY(-2px);
+    font-weight: 700;
+ }
+  

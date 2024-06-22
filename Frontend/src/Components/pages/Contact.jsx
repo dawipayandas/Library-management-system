@@ -5,9 +5,12 @@ import './Contact.css'
 
 const Contact = () => {
   return (
-    <div className='contact-parent'>
+    <div>
       <HomeNavbar/>
+      <div className='contact-parent'>
+
        Contact
+      </div>
       <HomeFooter/>
     </div>
   )

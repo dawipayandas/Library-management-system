@@ -1,4 +1,3 @@
-.conact-parent{
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+.contact-parent{
+    min-height: 51vh;
 }

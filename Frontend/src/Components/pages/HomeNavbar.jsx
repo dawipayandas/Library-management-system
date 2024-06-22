@@ -4,6 +4,7 @@ import './HomeNavbar.css'
 import { useContext } from 'react'
 import { counterContext } from '../../Context/context'
 import Cookies from 'universal-cookie'
+import logo from '../Assets/logo.png'
 
 const HomeNavbar = () => {
   const value=useContext(counterContext)
@@ -16,7 +17,7 @@ const HomeNavbar = () => {
   return (
         
       <nav className='home-navbar'>
-      <Link to="/home" className="home-logo">LIBRARY</Link>
+      <Link to="/home" ><img src={logo} alt="LIBRARY" className="home-logo"/></Link>
       <ul className='nav-ul'>
         
         

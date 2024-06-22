@@ -24,7 +24,7 @@ const SimilarBooks = ({ bookId }) => {
     }, [bookId]);
 
     return (
-        <div>
+        <div className='Similar-parent'>
             <h2>Similar Books:</h2>
             {books.length > 0 ? (
                <ul>

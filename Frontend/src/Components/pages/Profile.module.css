@@ -1,0 +1,65 @@
+.profileParent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profileContainer{
+    background-color: #fff;
+    margin: 20px 0;
+    border-radius: 5px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+.profileContainer ul{
+    list-style: none;
+}
+.userdetails h3{
+    color: #808080;
+    font-size: large;
+}
+.userdetails h4{
+    margin-left: 10px;
+    display: inline;
+    font-size: 15px;
+}
+
+.bookDetails h3{
+    color: #808080;
+    font-size: large;
+}
+
+.books{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 20px;
+    row-gap: 40px;
+    justify-items: center;
+}
+
+.bookicon{
+    width: 90px; 
+    height: auto;
+    margin-right: 10px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+.books a{
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 18px;
+    transition: 0.3s ease;
+}
+
+.books a:hover{
+    color: #000000;
+}
+
+.bookname{
+    width: 130px;
+    word-wrap: break-word;
+}

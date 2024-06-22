@@ -57,7 +57,9 @@ function BorrowerPage() {
                                 />
                             </Link>
                             <Link to={`/book/${book.id}`}>
+                                <div className='shortline'>
                                 {book.title} by {book.author}
+                                </div>
                             </Link>
                             <p>Copies Available: {book.copies}</p>
                         </li>

@@ -6,4 +6,10 @@
     border: none;
     border-radius: 5px;
     cursor:cell;
+    transition: 0.3s ease;
+}
+
+.upvoteButton:hover{
+    background-color: black;
+    transform: translateY(-2px);
 }

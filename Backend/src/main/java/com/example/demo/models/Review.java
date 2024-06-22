@@ -16,6 +16,7 @@ public class Review {
 
 
     private String title;
+    @Column(columnDefinition = "text")
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)

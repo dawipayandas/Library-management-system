@@ -17,6 +17,7 @@ public class Book {
 
     private String title;
     private String author;
+    @Column(columnDefinition = "text")
     private String description;
     private String isbn;
     private String genre;

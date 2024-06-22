@@ -6,6 +6,7 @@ import Cookies from 'universal-cookie'
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 import { withAuthHeader } from '../utils/auth'
+import ProfileCSS from './Profile.module.css'
 
 const Profile = () => {
  const [user, setUser]=useState([]);
@@ -47,22 +48,30 @@ const Profile = () => {
   return (
     <div>
         <HomeNavbar/>
+          <div className={ProfileCSS.profileParent}>
+            <div className={ProfileCSS.profileContainer}>
+                <div className={ProfileCSS.userdetails}>
+
+                    <h3>User Deatils:</h3>
+                    <h4>Username:</h4> {user.username}<br/>
+                    <h4>Email:</h4> {user.email}<br/><br/>
+                </div>
       
-      <h3>User Deatils:</h3>
-      <h4>Username: {user.username}</h4>
-      <h4>Email: {user.email}</h4><br/>
-
-      <h3>Books Issued:</h3>
-      <ul>
-                    {books.map((book) => (
-                        <li key={book.id}>
-                            <Link to={`/book/${book.id}`}><img src={book.imageUrl} alt="UPLOAD" className='book-icon-small'/></Link><br/>
-                            <Link to={`/book/${book.id}`}>{book.title} by {book.author}</Link>
-                        </li>
-                    ))}
-                    
-                </ul>
-
+                <div className={ProfileCSS.bookDetails}>
+                    <h3>Books Issued:</h3>
+                    <ul className={ProfileCSS.books}>
+                        {books.map((book) => (
+                                <li key={book.id}>
+                                    <Link to={`/book/${book.id}`}><img src={book.imageUrl} alt="UPLOAD" className={ProfileCSS.bookicon}/></Link><br/>
+                                    <div className={ProfileCSS.bookname}>
+                                    <Link to={`/book/${book.id}`}>{book.title} by {book.author}</Link>
+                                    </div>
+                                </li>
+                                    ))}
+                    </ul> 
+                </div>
+            </div>
+        </div>
       <HomeFooter/>
     </div>
   )

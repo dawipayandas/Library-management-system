@@ -50,6 +50,7 @@ const LoginSignup = () => {
 
             } catch (error) {
                 setMessage('Signup failed. Please try again.');
+                alert(message);
             }
         } else {
             try {
@@ -68,6 +69,7 @@ const LoginSignup = () => {
             } catch (error) {
                 
                 setMessage('Login failed. Please try again.');
+                alert(message);
             }
         }
     };
@@ -89,6 +91,7 @@ const LoginSignup = () => {
             setMessage('Signup successful! Please login.');
         } catch (error) {
             setMessage('Signup failed. Please try again.');
+            alert(message);
         }
 
     };
@@ -104,6 +107,7 @@ const LoginSignup = () => {
         } catch (error) {
             
             setMessage('Login failed. Please try again.');
+            alert(message);
         }
 
       }
