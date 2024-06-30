@@ -1,16 +1,22 @@
-// src/components/AdminPage.js
+
 import React, { useState, useEffect, useRef } from 'react';
 import BookService from '../../services/BookService';
 import { CloudinaryContext } from 'cloudinary-react';
 import axios from 'axios';
 import AdminCSS from './Admin.module.css'
+import { ThreeDots } from 'react-loader-spinner';
 
 function AdminPage() {
     const [books, setBooks] = useState([]);
     const [newBook, setNewBook] = useState({ title: '', author: '', description: '', isbn: '', genre: '', copies: 0, imageUrl: '' });
     const fileInputRef = useRef(null);
+    const [loading, setLoading]=useState(false);
 
     useEffect(() => {
+        setLoading(true);
+        setTimeout(()=>{
+            setLoading(false);
+        },1000)
         loadBooks();
     }, []);
 
@@ -75,6 +81,17 @@ function AdminPage() {
 
     return (
         <div className={AdminCSS.adminParent}>
+            {loading?<div><ThreeDots
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#4fa94d"
+                        radius="9"
+                        ariaLabel="three-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        /></div>
+            :
             <div className={AdminCSS.adminContainer}>
                 <h1>Admin Page</h1>
                 <div className={AdminCSS.addbook}>
@@ -110,6 +127,7 @@ function AdminPage() {
                     </div>
                 </div>
             </div>
+            }
         </div>
     );
 }

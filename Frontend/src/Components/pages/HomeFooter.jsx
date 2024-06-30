@@ -17,18 +17,16 @@ const HomeFooter = () => {
       <h4>Quick Links</h4>
       <ul>
         <li><Link to="/home">Home</Link></li>
-        <li><Link to="/catalog">Catalog</Link></li>
-        <li><Link to="/account">User Account</Link></li>
-        <li><Link to="/issued-books">Issued Books</Link></li>
-        <li><Link to="/help">Help/FAQ</Link></li>
+        <li><Link to="/profile">User Account</Link></li>
+        <li><Link to="/about">Help/FAQ</Link></li>
         <li><Link to="/contact">Contact Us</Link></li>
       </ul>
     </div>
     <div className="footer-section legal-info">
       <h4>Legal</h4>
       <ul>
-        <li><Link to="/privacy-policy">Privacy Policy</Link></li>
-        <li><Link to="/terms-of-service">Terms of Service</Link></li>
+        <li><Link to="/about">Privacy Policy</Link></li>
+        <li><Link to="/about">Terms of Service</Link></li>
       </ul>
     </div>
     <div className="footer-section library-hours">

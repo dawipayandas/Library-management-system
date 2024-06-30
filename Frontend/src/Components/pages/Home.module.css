@@ -23,3 +23,10 @@ body{
     flex-direction: column;
     background-color: #fff;
 }
+
+.loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}

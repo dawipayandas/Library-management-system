@@ -1,10 +1,11 @@
-.contact-parent{
-    min-height: 60vh;
-}
-.contact-loader{
+.loader{
     display: flex;
     width: 100%;
     min-height: 100vh;
     justify-content: center;
     align-items: center;
+}
+
+.parent{
+    min-height: 60vh;
 }

@@ -8,11 +8,20 @@ import BookPageCss from './BookPage.module.css'
 import ReviewBook from './ReviewBook';
 import UpvoteButton from './UpvoteButton';
 import SimilarBooks from './SimilarBooks';
+import { ThreeDots } from 'react-loader-spinner';
 
 function BookPage() {
     const { id } = useParams();
     const [book, setBook] = useState(null);
     const navigate = useNavigate();
+    const[loading, setLoading]=useState(false);
+
+    useEffect(()=>{
+      setLoading(true);
+      setTimeout(()=>{
+        setLoading(false);
+      },1000)
+    },[])
 
     useEffect(() => {
         BookService.getBookById(id).then((response) => {
@@ -27,6 +36,17 @@ function BookPage() {
     if (!book) return <div>Loading...</div>;
 
     return (
+        <div>
+      {loading?<div className={BookPageCss.loader}><ThreeDots
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#4fa94d"
+                        radius="9"
+                        ariaLabel="three-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        /></div>:
         <div>
             <HomeNavbar />
             <div className={BookPageCss.bookpagecontainer}>
@@ -50,6 +70,8 @@ function BookPage() {
             <ReviewBook bookId={id} />
             <SimilarBooks bookId={id} />
             <HomeFooter />
+        </div>
+        }
         </div>
     );
 }

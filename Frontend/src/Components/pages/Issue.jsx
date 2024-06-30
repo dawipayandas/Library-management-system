@@ -5,6 +5,7 @@ import { withAuthHeader } from '../utils/auth';
 import {jwtDecode} from 'jwt-decode';
 import Cookies from 'universal-cookie';
 import IssuePageCss from './Issue.module.css';
+import { ThreeDots } from 'react-loader-spinner';
 
 const Issue = () => {
     const { id } = useParams();
@@ -15,6 +16,15 @@ const Issue = () => {
     const [user, setUser] = useState({});
     const [date, setDate] = useState({ day: 0, month: '', year: 0 });
     const [book, setBook] = useState({ title: '', author: '', description: '', isbn: '', genre: '', copies: 0, imageUrl: '' });
+
+    const[loading, setLoading]=useState(false);
+
+    useEffect(()=>{
+      setLoading(true);
+      setTimeout(()=>{
+        setLoading(false);
+      },1000)
+    },[])
 
     useEffect(() => {
         const loadUser = async () => {
@@ -58,6 +68,7 @@ const Issue = () => {
 
     const handleIssue = async () => {
         try {
+            setLoading(true);
             const issueResponse = await axios.post(
                 `http://localhost:8086/issue/book/${bookId}/${username}`,
                 {},
@@ -75,6 +86,8 @@ const Issue = () => {
             }
         } catch (error) {
             console.log("Error issuing book:", error);
+        } finally{
+            setLoading(false);
         }
     };
 
@@ -83,7 +96,18 @@ const Issue = () => {
     };
 
     return (
+        
         <div className={IssuePageCss.issueParent}>
+            {loading?<div><ThreeDots
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#4fa94d"
+                        radius="9"
+                        ariaLabel="three-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        /></div>:
             <div className={IssuePageCss.issueContainer}>
                 <h2>Issue Confirmation Page</h2>
                 <div>
@@ -107,6 +131,7 @@ const Issue = () => {
                     <button onClick={handleCancel} id={IssuePageCss.cancel}>Cancel</button>
                 </div>
             </div>
+            }
         </div>
     );
 };

@@ -7,10 +7,20 @@ import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 import { withAuthHeader } from '../utils/auth'
 import ProfileCSS from './Profile.module.css'
+import { ThreeDots } from 'react-loader-spinner';
 
 const Profile = () => {
  const [user, setUser]=useState([]);
  const[books, setBooks]=useState([]);
+ const[loading, setLoading]=useState(false);
+
+ useEffect(()=>{
+   setLoading(true);
+   setTimeout(()=>{
+     setLoading(false);
+   },1000)
+ },[])
+
   useEffect(() => {
     const loadUser = async ()=>{
         try{
@@ -47,12 +57,23 @@ const Profile = () => {
 
   return (
     <div>
+      {loading?<div className={ProfileCSS.loader}><ThreeDots
+                        visible={true}
+                        height="80"
+                        width="80"
+                        color="#4fa94d"
+                        radius="9"
+                        ariaLabel="three-dots-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        /></div>:
+    <div>
         <HomeNavbar/>
           <div className={ProfileCSS.profileParent}>
             <div className={ProfileCSS.profileContainer}>
                 <div className={ProfileCSS.userdetails}>
 
-                    <h3>User Deatils:</h3>
+                    <h3>User Details:</h3>
                     <h4>Username:</h4> {user.username}<br/>
                     <h4>Email:</h4> {user.email}<br/><br/>
                 </div>
@@ -73,6 +94,8 @@ const Profile = () => {
             </div>
         </div>
       <HomeFooter/>
+    </div>
+      }
     </div>
   )
 }

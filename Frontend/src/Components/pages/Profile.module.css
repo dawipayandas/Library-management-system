@@ -18,6 +18,10 @@
 .profileContainer ul{
     list-style: none;
 }
+
+.userdetails{
+    font-size: large;
+}
 .userdetails h3{
     color: #808080;
     font-size: large;
@@ -25,7 +29,7 @@
 .userdetails h4{
     margin-left: 10px;
     display: inline;
-    font-size: 15px;
+    font-size: large;
 }
 
 .bookDetails h3{
@@ -62,4 +66,12 @@
 .bookname{
     width: 130px;
     word-wrap: break-word;
+}
+
+.loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
 }
