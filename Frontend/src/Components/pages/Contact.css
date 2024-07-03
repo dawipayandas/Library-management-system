@@ -1,6 +1,4 @@
-.contact-parent{
-    min-height: 60vh;
-}
+
 .contact-loader{
     display: flex;
     width: 100%;
@@ -8,3 +6,23 @@
     justify-content: center;
     align-items: center;
 }
+
+.contact-parent {
+    margin: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .contact-parent p, .contact-parent ul, .contact-parent li {
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+  
+  .contact-parent a {
+    color: #4fa94d;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .contact-parent a:hover {
+    text-decoration: underline;
+  }
