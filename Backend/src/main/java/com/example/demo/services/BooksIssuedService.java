@@ -17,13 +17,14 @@ public class BooksIssuedService {
     @Autowired
     BookRepository bookRepository;
 
-    public BooksIssued issueBook(Long bookId, String username) {
+    public BooksIssued issueBook(Long bookId, String username, long returnTime) {
         Book book=bookRepository.findById(bookId).get();
         book.setCopies(book.getCopies()-1);
         bookRepository.save(book);
         BooksIssued booksIssued = new BooksIssued();
         booksIssued.setBookId(bookId);
         booksIssued.setUsername(username);
+        booksIssued.setReturnTime(returnTime);
         return booksIssuedRepository.save(booksIssued);
     }
 

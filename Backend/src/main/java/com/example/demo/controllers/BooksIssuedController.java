@@ -16,8 +16,8 @@ public class BooksIssuedController {
     private BooksIssuedService booksIssuedService;
 
     @PostMapping("/{bookId}/{username}")
-    public BooksIssued issueBook(@PathVariable Long bookId, @PathVariable String username) {
-        return booksIssuedService.issueBook(bookId, username);
+    public BooksIssued issueBook(@PathVariable Long bookId, @PathVariable String username, @RequestParam long returnTime) {
+        return booksIssuedService.issueBook(bookId, username, returnTime);
     }
 
     @GetMapping("/{username}")

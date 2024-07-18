@@ -10,12 +10,10 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class BooksIssued {
+public class BooksRead {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    private long bookId;
+    private Long id;
     private String username;
-    private long returnTime;
+    private long bookId;
 }

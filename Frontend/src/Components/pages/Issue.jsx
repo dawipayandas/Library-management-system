@@ -15,6 +15,8 @@ const Issue = () => {
     const bookId = id;
     const [user, setUser] = useState({});
     const [date, setDate] = useState({ day: 0, month: '', year: 0 });
+    const [returndate, setReturndate] = useState({ day: 0, month: '', year: 0 });
+    const [duration, setDuration]=useState(1);
     const [book, setBook] = useState({ title: '', author: '', description: '', isbn: '', genre: '', copies: 0, imageUrl: '' });
 
     const[loading, setLoading]=useState(false);
@@ -25,6 +27,20 @@ const Issue = () => {
         setLoading(false);
       },1000)
     },[])
+
+    useEffect(()=>{
+        const calculateReturnDate=()=>{
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            const dt=new Date();
+            dt.setMonth(dt.getMonth()+duration);
+            setReturndate({
+                day: dt.getDate(),
+                month: months[dt.getMonth()],
+                year: dt.getFullYear()
+            });
+        }
+        calculateReturnDate();
+      },[duration])
 
     useEffect(() => {
         const loadUser = async () => {
@@ -69,10 +85,13 @@ const Issue = () => {
     const handleIssue = async () => {
         try {
             setLoading(true);
+            const dt=new Date();
+            dt.setMonth(dt.getMonth()+duration);
+            const returnTime=dt.getTime();
             const issueResponse = await axios.post(
                 `http://localhost:8086/issue/book/${bookId}/${username}`,
                 {},
-                { headers: withAuthHeader() }
+                { headers: withAuthHeader(), params:{returnTime: returnTime} }
             );
             if (issueResponse.status === 200) {
                 await axios.get(
@@ -124,8 +143,42 @@ const Issue = () => {
                         <h4>Title:</h4> {book.title}<br/>
                         <h4>Author:</h4> {book.author}<br/>
                         <h4>Date of Issue:</h4> {date.day} {date.month} {date.year}<br/><br/>
+                        <h4>Date of return:</h4> {returndate.day} {returndate.month} {returndate.year}
                     </div>
                 </div>
+                    <div className={IssuePageCss.duration}>
+                    <div>
+                        <input
+                            type="radio"
+                            name="duration"
+                            id="one"
+                            value="three"
+                            defaultChecked
+                            onClick={() => setDuration(1)}
+                        />
+                        <label htmlFor="user" className="auth-role-radio">1 month</label>
+                    </div>
+                    <div>
+                        <input
+                            type="radio"
+                            name="duration"
+                            id="three"
+                            value="three"
+                            onClick={() => setDuration(3)}
+                        />
+                        <label htmlFor="admin">3 month</label>
+                    </div>
+                    <div>
+                        <input
+                            type="radio"
+                            name="duration"
+                            id="three"
+                            value="three"
+                            onClick={() => setDuration(6)}
+                        />
+                        <label htmlFor="admin">6 month</label>
+                    </div>
+                    </div>
                 <div className={IssuePageCss.issueButtons}>
                     <button onClick={handleIssue} id={IssuePageCss.confirm}>Confirm</button>
                     <button onClick={handleCancel} id={IssuePageCss.cancel}>Cancel</button>

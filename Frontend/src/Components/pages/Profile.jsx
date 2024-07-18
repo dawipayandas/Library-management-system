@@ -12,6 +12,7 @@ import { ThreeDots } from 'react-loader-spinner';
 const Profile = () => {
  const [user, setUser]=useState([]);
  const[books, setBooks]=useState([]);
+ const[readBooks, setReadBooks]=useState([]);
  const[loading, setLoading]=useState(false);
 
  useEffect(()=>{
@@ -44,13 +45,28 @@ const Profile = () => {
           `http://localhost:8086/issue/book/${username}`, 
           { headers: withAuthHeader() }
       );
-      console.log(response.data);
+      // console.log(response.data);
       setBooks(response.data);
       }catch(error){
-          console.log("Error getting book detail:", error);
+          console.log("Error getting issued book detail:", error);
       }
 
     }
+    const loadReadBook=async()=>{
+      try{
+      const cookies=new Cookies();
+            const username = jwtDecode(cookies.get('token')).sub;
+      const response= await axios.get(
+          `http://localhost:8086/readbook/${username}`, 
+          { headers: withAuthHeader() }
+      );
+      // console.log(response.data);
+      setBooks(response.data);
+      }catch(error){
+          console.log("Error getting Read book detail:", error);
+      }
+    }
+    loadReadBook();
     loadBook();
         loadUser();
     }, []);
@@ -82,6 +98,17 @@ const Profile = () => {
                     <h3>Books Issued:</h3>
                     <ul className={ProfileCSS.books}>
                         {books.map((book) => (
+                                <li key={book.id}>
+                                    <Link to={`/book/${book.id}`}><img src={book.imageUrl} alt="UPLOAD" className={ProfileCSS.bookicon}/></Link><br/>
+                                    <div className={ProfileCSS.bookname}>
+                                    <Link to={`/book/${book.id}`}>{book.title} by {book.author}</Link>
+                                    </div>
+                                </li>
+                                    ))}
+                    </ul> 
+                    <h3>Books Read:</h3>
+                    <ul className={ProfileCSS.books}>
+                        {readBooks.map((book) => (
                                 <li key={book.id}>
                                     <Link to={`/book/${book.id}`}><img src={book.imageUrl} alt="UPLOAD" className={ProfileCSS.bookicon}/></Link><br/>
                                     <div className={ProfileCSS.bookname}>

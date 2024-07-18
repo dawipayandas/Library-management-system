@@ -77,3 +77,10 @@ body{
     background-color: #ec0a0a;
     transform: translateY(-2px);
 }
+
+.duration{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 15px 0;
+}

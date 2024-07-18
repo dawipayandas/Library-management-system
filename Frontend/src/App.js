@@ -32,6 +32,21 @@ function App() {
         });
 }, []);
 
+useEffect(() => {
+  const updatebooks=async()=>{
+    try {
+      const dt=new Date();
+      const currentTime=dt.getTime();
+      await axios.get(
+          `http://localhost:8086/readbook/update`,
+          { headers: withAuthHeader(), params: {currentTime:currentTime} }
+      );
+  } catch (error) {
+      console.log("Error updating book detail:", error);
+  }
+  }
+  updatebooks();
+}, []);
 
 
   return (

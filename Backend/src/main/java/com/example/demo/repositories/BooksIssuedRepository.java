@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface BooksIssuedRepository extends JpaRepository<BooksIssued, Long> {
     List<BooksIssued> findByUsername(String username);
+    List<BooksIssued> findByReturnTimeLessThan(long currentTime);
 }
