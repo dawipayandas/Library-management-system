@@ -18,6 +18,7 @@ import { counterContext } from './Context/context.jsx';
 
 function App() {
   const [isAuthenticated, setisAuthenticated]= useState(false);
+  const [role, setRole]=useState("");
   useEffect(() => {
     axios.get('http://localhost:8086/check', {
       headers: withAuthHeader()
@@ -25,12 +26,23 @@ function App() {
         .then(response => {
           console.log("Authenticated got response");
           setisAuthenticated(true);
+          axios.get('http://localhost:8086/roleadmin', {
+            headers: withAuthHeader()
+            })
+              .then(response => {
+                setRole("ROLE_ADMIN")
+              })
+              .catch(error => {
+                  setRole("ROLE_USER")
+                  console.error('Error signin:', error);
+              });
         })
         .catch(error => {
             console.error('Error signin:', error);
             setisAuthenticated(false);
         });
 }, []);
+
 
 useEffect(() => {
   const updatebooks=async()=>{
@@ -50,12 +62,12 @@ useEffect(() => {
 
 
   return (
-    <counterContext.Provider value={{isAuthenticated, setisAuthenticated}}>
+    <counterContext.Provider value={{isAuthenticated, setisAuthenticated, role, setRole}}>
       <Router>
               <Routes>
-                  <Route path="/" element={{...isAuthenticated? <Navigate to="/home"/>: <LoginSignup/>}} />
-                  <Route path="/home"  element={{...isAuthenticated?<Home/>:<Navigate to="/"/>}}/>
-                  <Route path="/admin" element={{...isAuthenticated?<AdminPage/>:<Navigate to="/"/>}}/>
+              <Route path="/" element={isAuthenticated ? (role === "ROLE_ADMIN" ? (<Navigate to="/admin" />) : (<Navigate to="/home" />)) : (<LoginSignup />)} />
+                  <Route path="/home"  element={{...isAuthenticated?(role === "ROLE_ADMIN" ? (<Navigate to="/admin" />) : (<Home/>)):(<Navigate to="/"/>)}}/>
+                  <Route path="/admin" element={{...isAuthenticated?(role === "ROLE_ADMIN" ? (<AdminPage/>) : (<Navigate to="/home" />)):(<Navigate to="/"/>)}}/>
                   <Route path="/book/:id" element={{...isAuthenticated?<BookPage/>:<Navigate to="/"/>}}/>
                   <Route path="/borrow" element={{...isAuthenticated?<BorrowerPage/>:<Navigate to="/"/>}}/>
                   <Route path="/about" element={{...isAuthenticated?<About/>:<Navigate to="/"/>}}/>

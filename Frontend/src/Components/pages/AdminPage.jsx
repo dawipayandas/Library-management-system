@@ -5,6 +5,7 @@ import { CloudinaryContext } from 'cloudinary-react';
 import axios from 'axios';
 import AdminCSS from './Admin.module.css'
 import { ThreeDots } from 'react-loader-spinner';
+import AdminNavbar from './AdminNavbar';
 
 function AdminPage() {
     const [books, setBooks] = useState([]);
@@ -80,6 +81,8 @@ function AdminPage() {
     };
 
     return (
+        <>
+        <div><AdminNavbar/></div>
         <div className={AdminCSS.adminParent}>
             {loading?<div><ThreeDots
                         visible={true}
@@ -129,6 +132,7 @@ function AdminPage() {
             </div>
             }
         </div>
+        </>
     );
 }
 

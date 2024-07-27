@@ -43,9 +43,16 @@ const LoginSignup = () => {
                 // const temp = response.data.roles;
                 const temp= ["ROLE_USER"];
                 if(JSON.stringify(temp)=== JSON.stringify(response.data.roles))
-                navigate('/home');
-                else
-                navigate('/admin');
+                    {
+                        value.setRole("ROLE_USER");
+                        console.log(value.role);
+                        navigate('/home');
+                    }
+                else{
+                    value.setRole("ROLE_ADMIN");
+                    console.log(value.role);
+                    navigate('/admin');
+                }
                 // setaction('Login');
 
             } catch (error) {
@@ -63,9 +70,16 @@ const LoginSignup = () => {
                 // const temp = response.data.roles;
                 const temp= ["ROLE_USER"];
                 if(JSON.stringify(temp)=== JSON.stringify(response.data.roles))
-                navigate('/home');
-                else
-                navigate('/admin');
+                    {
+                        value.setRole("ROLE_USER");
+                        console.log(value.role);
+                        navigate('/home');
+                    }
+                else{
+                    value.setRole("ROLE_ADMIN");
+                    console.log(value.role);
+                    navigate('/admin');
+                }
             } catch (error) {
                 
                 setMessage('Login failed. Please try again.');
@@ -103,6 +117,7 @@ const LoginSignup = () => {
             cookie.set('token', response.data.token, {expires: new Date(decoded.exp * 1000)} );
             setMessage('Login successful!');
             value.setisAuthenticated(true);
+            value.setRole("ROLE_USER");
             navigate('/home');
         } catch (error) {
             

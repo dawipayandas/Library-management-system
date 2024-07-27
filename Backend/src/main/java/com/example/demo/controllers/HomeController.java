@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,11 +46,18 @@ public class HomeController {
     public String home() {
         return "home";
     }
+
     @GetMapping("/check")
     public boolean checkUser() {
         return true;
     }
 
+    @GetMapping("/roleadmin")
+    @PreAuthorize("hasRole('ADMIN')")
+    public boolean roleAdmin() {
+        return true;
+    }
+    
     @GetMapping("/user/{username}")
     public Optional<User> user(@PathVariable String username) {
         return userRepository.findByUsername(username);
