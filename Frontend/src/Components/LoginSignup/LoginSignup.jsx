@@ -39,7 +39,7 @@ const LoginSignup = () => {
                 cookie.set('token', response.data.token, {expires: new Date(decoded.exp * 1000)} );
                 // setMessage('Login successful!');
                 value.setisAuthenticated(true);
-                // role == ["user"] ? navigate('/home'): navigate('/admin');
+                // role == ["user"] ? navigate('/home'): navigate('/admin/updatebooks');
                 // const temp = response.data.roles;
                 const temp= ["ROLE_USER"];
                 if(JSON.stringify(temp)=== JSON.stringify(response.data.roles))
@@ -51,7 +51,7 @@ const LoginSignup = () => {
                 else{
                     value.setRole("ROLE_ADMIN");
                     console.log(value.role);
-                    navigate('/admin');
+                    navigate('/admin/updatebooks');
                 }
                 // setaction('Login');
 
@@ -66,7 +66,7 @@ const LoginSignup = () => {
                 cookie.set('token', response.data.token, {expires: new Date(decoded.exp * 1000)} );
                 setMessage('Login successful!');
                 value.setisAuthenticated(true);
-                // role == ["user"] ? navigate('/home'): navigate('/admin');
+                // role == ["user"] ? navigate('/home'): navigate('/admin/updatebooks');
                 // const temp = response.data.roles;
                 const temp= ["ROLE_USER"];
                 if(JSON.stringify(temp)=== JSON.stringify(response.data.roles))
@@ -78,7 +78,7 @@ const LoginSignup = () => {
                 else{
                     value.setRole("ROLE_ADMIN");
                     console.log(value.role);
-                    navigate('/admin');
+                    navigate('/admin/updatebooks');
                 }
             } catch (error) {
                 

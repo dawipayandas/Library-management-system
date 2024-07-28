@@ -38,11 +38,11 @@ function AdminPage() {
             return;
         }
         if (!newBook.title) {
-            alert('Please title an image before adding the book.');
+            alert('Please title an title before adding the book.');
             return;
         }
         if (!newBook.genre) {
-            alert('Please genre an image before adding the book.');
+            alert('Please genre an genre before adding the book.');
             return;
         }
         BookService.addBook(newBook).then(() => {
@@ -82,9 +82,7 @@ function AdminPage() {
 
     return (
         <>
-        <div><AdminNavbar/></div>
-        <div className={AdminCSS.adminParent}>
-            {loading?<div><ThreeDots
+            {loading?<div className={AdminCSS.adminParent}><ThreeDots
                         visible={true}
                         height="80"
                         width="80"
@@ -95,6 +93,9 @@ function AdminPage() {
                         wrapperClass=""
                         /></div>
             :
+            <>
+        <div><AdminNavbar/></div>
+        <div className={AdminCSS.adminParent}>
             <div className={AdminCSS.adminContainer}>
                 <h1>Admin Page</h1>
                 <div className={AdminCSS.addbook}>
@@ -130,9 +131,10 @@ function AdminPage() {
                     </div>
                 </div>
             </div>
-            }
         </div>
         </>
+            }
+    </>
     );
 }
 

@@ -7,19 +7,10 @@ const AdminNavbar = () => {
     <nav className='home-navbar'>
       <Link to="/home" className='nav-text'><h1>Admin Panel</h1></Link>
       <ul className='nav-ul'>
-        
-        
-          <NavLink to="/home" className="nav-navlink">Add Book</NavLink>
-        
-        
-          <NavLink to="/about" className="nav-navlink">Books Available</NavLink>
-        
-        
-          <NavLink to="/contact" className="nav-navlink">User Details</NavLink>
-        
-        
-          <NavLink to="/profile" className="nav-navlink">Admin Profile</NavLink>
-
+          <NavLink to="/admin/updatebooks" className="nav-navlink">Update Books</NavLink>
+          <NavLink to="/admin/addbook" className="nav-navlink">Add Book</NavLink>
+          {/* <NavLink to="/admin/users" className="nav-navlink">User Details</NavLink> */}
+          <NavLink to="/admin/profile" className="nav-navlink">Admin Profile</NavLink>
           {/* <button onClick={logout}>Logout </button> */}
         
       </ul>
