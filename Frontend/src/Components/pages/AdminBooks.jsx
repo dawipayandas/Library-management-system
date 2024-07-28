@@ -3,7 +3,7 @@ import BookService from '../../services/BookService';
 import AdminCSS from './Admin.module.css'
 import { ThreeDots } from 'react-loader-spinner';
 import AdminNavbar from './AdminNavbar';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function AdminPage() {
     const [books, setBooks] = useState([]);
@@ -79,7 +79,10 @@ function AdminPage() {
                         <ul>
                             {books.map((book) => (
                                 <li key={book.id}>
-                                    <p>{book.title} by <i>{book.author}</i></p>
+                                    <div className={AdminCSS.bookdet}>
+                                    <img src={book.imageUrl} alt="UPLOAD" className={AdminCSS.bookiconsmall} />
+                                    <Link to={`/admin/book/${book.id}`}><p>{book.title} by <i>{book.author}</i></p></Link>
+                                    </div>
                                     <p id={AdminCSS.copies}>COPIES: {book.copies}</p>
                                     <div className={AdminCSS.twobuttons}>
                                     <button onClick={() => deleteBook(book.id)} id={AdminCSS.deletebutton}>Delete</button>

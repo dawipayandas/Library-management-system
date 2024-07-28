@@ -19,6 +19,7 @@ import AdminBooks from './Components/pages/AdminBooks.jsx';
 import AddBook from './Components/pages/AddBook.jsx';
 import AdminProfile from './Components/pages/AdminProfile.jsx';
 import UserProfile from './Components/pages/UserProfile.jsx'
+import CopyRegister from './Components/pages/CopyRegister.jsx';
 
 function App() {
   const [isAuthenticated, setisAuthenticated]= useState(false);
@@ -83,6 +84,7 @@ useEffect(() => {
                   <Route path="/admin/addbook" element={isAuthenticated && role === "ROLE_ADMIN" ? <AddBook /> : <Navigate to="/error" />}/>
                   <Route path="/admin/userprofile" element={isAuthenticated && role === "ROLE_ADMIN" ? <UserProfile /> : <Navigate to="/error" />}/>
                   <Route path="/admin/profile" element={isAuthenticated && role === "ROLE_ADMIN" ? <AdminProfile /> : <Navigate to="/error" />}/>
+                  <Route path="/admin/book/:bookId" element={isAuthenticated && role === "ROLE_ADMIN" ? <CopyRegister /> : <Navigate to="/error" />}/>
               </Routes>
       </Router>
     </counterContext.Provider>

@@ -1,0 +1,56 @@
+.copyregister-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .copyregister-container h1{
+    color: grey;
+  }
+
+  .copyregister-container h2{
+    color: grey;
+  }
+
+  .copyregister-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .copyregister-container .book-details {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .copyregister-container .bookicon {
+    width: 200px;  
+    height: auto;
+    object-fit: cover; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px #0000001a; 
+    margin: 20px;
+    justify-self: center;
+    align-self: center;
+}
+  .copyregister-container .book-details h2 {
+    margin-top: 0;
+  }
+  
+  .copyregister-container .user-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .copyregister-container .user-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: medium;
+  }
+  
+  .copyregister-container .user-list li:last-child {
+    border-bottom: none;
+  }
+  

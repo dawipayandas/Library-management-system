@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 import com.example.demo.models.Book;
 import com.example.demo.models.BooksIssued;
+import com.example.demo.models.User;
 import com.example.demo.services.BooksIssuedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,5 +24,10 @@ public class BooksIssuedController {
     @GetMapping("/{username}")
     public List<Book> getBook(@PathVariable String username) {
         return booksIssuedService.getBooksbyUsername(username);
+    }
+
+    @GetMapping("/copies/{bookId}")
+    public List<User> getBooksIssued(@PathVariable Long bookId) {
+        return booksIssuedService.getUsersbyBookId(bookId);
     }
 }

@@ -16,6 +16,11 @@
     margin-top: 15px;
 }
 
+.adminContainer a{
+    text-decoration: none;
+    color: #007BFF;
+}
+
 .adminContainer h1{
     margin: 0 auto;
 }
@@ -152,4 +157,20 @@
 
 .username button.searchButton:hover {
     background-color: #0056b3;
+}
+
+.bookiconsmall{
+    width: 80px;  
+    height: auto;
+    object-fit: cover; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px #0000001a; 
+    margin: 20px;
+    justify-self: center;
+    align-self: center; 
+}
+
+.bookdet{
+    display: flex;
+    align-items: center;
 }
