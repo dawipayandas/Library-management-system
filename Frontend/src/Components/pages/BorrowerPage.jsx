@@ -33,19 +33,30 @@ function BorrowerPage() {
 
     return (
         <div className='borrower-parent'>
-            <div className='isbn-search'>
-                <form onSubmit={isbnsearch}>
-                    <input 
-                        type="text" 
-                        value={isbn} 
-                        placeholder='ISBN-13' 
-                        onChange={(e) => setIsbn(e.target.value)} 
-                    />
-                    <button type='submit' className='isbn-search-btn'>Search</button>
-                </form>
+            <div className='page-header'>
+                <h1 className='page-title'>Library Collection</h1>
+                <p className='page-subtitle'>Discover, search, and borrow from our extensive collection of books</p>
             </div>
+            
+            <div className='isbn-search'>
+                <div className='search-container'>
+                    <h3 className='search-title'>Quick ISBN Search</h3>
+                    <p className='search-description'>Enter an ISBN-13 to find a specific book instantly</p>
+                    <form onSubmit={isbnsearch}>
+                        <input 
+                            type="text" 
+                            value={isbn} 
+                            placeholder='Enter ISBN-13 (e.g., 978-3-16-148410-0)' 
+                            onChange={(e) => setIsbn(e.target.value)} 
+                        />
+                        <button type='submit' className='isbn-search-btn'>Search</button>
+                    </form>
+                </div>
+            </div>
+            
             <div className='borrower-books'>
-                <h2>Available Books</h2><br/>
+                <h2>Available Books</h2>
+                <p className='books-subtitle'>Browse through our curated collection of books available for borrowing</p>
                 <ul className="books-container">
                     {books.map((book) => (
                         <li key={book.id} className="book-item">
@@ -58,10 +69,11 @@ function BorrowerPage() {
                             </Link>
                             <Link to={`/book/${book.id}`}>
                                 <div className='shortline'>
-                                {book.title} by {book.author}
+                                    <div className='book-title'>{book.title}</div>
+                                    <div className='book-author'>by {book.author}</div>
                                 </div>
                             </Link>
-                            <p>Copies Available: {book.copies}</p>
+                            <div className='book-copies'>Copies Available: {book.copies}</div>
                         </li>
                     ))}
                 </ul>   
