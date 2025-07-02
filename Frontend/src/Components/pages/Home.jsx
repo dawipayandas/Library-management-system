@@ -17,12 +17,12 @@ const Home = () => {
   },[])
 
   return (
-    <div>
+    <div className="home-page-body">
       {loading?<div className={HomeCSS.loader}><ThreeDots
                         visible={true}
                         height="80"
                         width="80"
-                        color="#4fa94d"
+                        color="#3b82f6"
                         radius="9"
                         ariaLabel="three-dots-loading"
                         wrapperStyle={{}}

@@ -1,56 +1,285 @@
 .copyregister-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .copyregister-container h1{
-    color: grey;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.copyregister-container h1 {
+  color: #1e293b;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.copyregister-container h2 {
+  color: #64748b;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 24px 0 16px 0;
+}
+
+.copyregister-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.copyregister-container .book-details {
+  margin-bottom: 40px;
+  padding: 30px;
+  border: 2px solid #e2e8f0;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.copyregister-container .bookicon {
+  width: 150px;
+  height: 225px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.book-info {
+  flex: 1;
+}
+
+.book-info h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+}
+
+.book-info .author {
+  font-size: 16px;
+  color: #3b82f6;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.book-info .description {
+  color: #64748b;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.copyregister-container .book-details h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #1e293b;
+  font-size: 20px;
+}
+
+.users-section {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  border: 2px solid #f1f5f9;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.users-section h2 {
+  color: #1e293b;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.copyregister-container .user-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.copyregister-container .user-list li {
+  padding: 20px;
+  border: 2px solid #f1f5f9;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #334155;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.copyregister-container .user-list li:hover {
+  border-color: #3b82f6;
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(59, 130, 246, 0.1);
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.user-status {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-borrowed {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-returned {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.status-overdue {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .copyregister-container {
+    margin: 20px;
+    padding: 30px 24px;
+    border-radius: 16px;
   }
 
-  .copyregister-container h2{
-    color: grey;
+  .copyregister-container h1 {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+  .copyregister-container h2 {
+    font-size: 20px;
+    margin: 20px 0 12px 0;
   }
 
   .copyregister-header {
-    text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
-  
+
   .copyregister-container .book-details {
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 24px;
+    gap: 20px;
   }
-  
+
   .copyregister-container .bookicon {
-    width: 200px;  
-    height: auto;
-    object-fit: cover; 
-    border-radius: 5px; 
-    box-shadow: 0 2px 5px #0000001a; 
-    margin: 20px;
-    justify-self: center;
-    align-self: center;
-}
-  .copyregister-container .book-details h2 {
-    margin-top: 0;
+    width: 120px;
+    height: 180px;
   }
-  
-  .copyregister-container .user-list {
-    list-style-type: none;
-    padding: 0;
+
+  .book-info h3 {
+    font-size: 20px;
   }
-  
+
+  .book-info .author {
+    font-size: 14px;
+  }
+
+  .book-info .description {
+    font-size: 13px;
+  }
+
+  .users-section {
+    padding: 24px;
+  }
+
+  .users-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
   .copyregister-container .user-list li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    font-size: medium;
+    padding: 16px;
+    font-size: 15px;
   }
-  
-  .copyregister-container .user-list li:last-child {
-    border-bottom: none;
+
+  .user-info {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch;
   }
+}
+
+@media (max-width: 480px) {
+  .copyregister-container {
+    margin: 16px 12px;
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+
+  .copyregister-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .copyregister-container h2 {
+    font-size: 18px;
+  }
+
+  .copyregister-container .book-details {
+    padding: 20px;
+    margin-bottom: 24px;
+  }
+
+  .copyregister-container .bookicon {
+    width: 100px;
+    height: 150px;
+  }
+
+  .book-info h3 {
+    font-size: 18px;
+  }
+
+  .book-info .author {
+    font-size: 13px;
+  }
+
+  .book-info .description {
+    font-size: 12px;
+  }
+
+  .users-section {
+    padding: 20px;
+  }
+
+  .users-section h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .copyregister-container .user-list li {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .user-status {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+}
   

@@ -32,11 +32,9 @@ function BookPage() {
         navigate(`/issue/${book.id}`);
     }
 
-    if (!book) return <div>Loading...</div>;
-
-    return (
-        <div>
-      {loading?<div className={BookPageCss.loader}><ThreeDots
+    if (!book) return <div>Loading...</div>;    return (
+        <div className="home-page-body">
+        {loading?<div className={BookPageCss.loader}><ThreeDots
                         visible={true}
                         height="80"
                         width="80"

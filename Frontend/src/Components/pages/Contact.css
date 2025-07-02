@@ -1,28 +1,187 @@
 
-.contact-loader{
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-    justify-content: center;
-    align-items: center;
+.contact-loader {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .contact-parent {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.contact-parent h1 {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.contact-parent h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #3b82f6;
+  margin: 32px 0 16px 0;
+}
+
+.contact-parent h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 24px 0 12px 0;
+}
+
+.contact-parent p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #475569;
+  margin-bottom: 20px;
+}
+
+.contact-parent ul {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+
+.contact-parent li {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #475569;
+  margin-bottom: 12px;
+}
+
+.contact-parent a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.contact-parent a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+  transition: width 0.3s ease;
+}
+
+.contact-parent a:hover {
+  color: #1d4ed8;
+}
+
+.contact-parent a:hover::before {
+  width: 100%;
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+  margin: 32px 0;
+}
+
+.contact-card {
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 768px) {
+  .contact-parent {
     margin: 20px;
-    font-family: Arial, sans-serif;
+    padding: 30px 24px;
+    border-radius: 16px;
   }
-  
-  .contact-parent p, .contact-parent ul, .contact-parent li {
-    margin-bottom: 15px;
-    line-height: 1.6;
+
+  .contact-parent h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
   }
-  
-  .contact-parent a {
-    color: #4fa94d;
-    text-decoration: none;
-    font-weight: 600;
+
+  .contact-parent h2 {
+    font-size: 20px;
+    margin: 24px 0 12px 0;
   }
-  
-  .contact-parent a:hover {
-    text-decoration: underline;
+
+  .contact-parent h3 {
+    font-size: 18px;
+    margin: 20px 0 10px 0;
   }
+
+  .contact-parent p {
+    font-size: 15px;
+  }
+
+  .contact-parent li {
+    font-size: 15px;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin: 24px 0;
+  }
+
+  .contact-card {
+    padding: 24px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-parent {
+    margin: 16px 12px;
+    padding: 24px 16px;
+    border-radius: 12px;
+  }
+
+  .contact-parent h1 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .contact-parent h2 {
+    font-size: 18px;
+    margin: 20px 0 10px 0;
+  }
+
+  .contact-parent h3 {
+    font-size: 16px;
+    margin: 16px 0 8px 0;
+  }
+
+  .contact-parent p {
+    font-size: 14px;
+  }
+
+  .contact-parent li {
+    font-size: 14px;
+  }
+
+  .contact-card {
+    padding: 20px;
+  }
+}

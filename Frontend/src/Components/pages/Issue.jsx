@@ -121,7 +121,7 @@ const Issue = () => {
                         visible={true}
                         height="80"
                         width="80"
-                        color="#4fa94d"
+                        color="#3b82f6"
                         radius="9"
                         ariaLabel="three-dots-loading"
                         wrapperStyle={{}}

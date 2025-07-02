@@ -1,9 +1,7 @@
-/* Reset and Base Styles */
 * {
   box-sizing: border-box;
 }
 
-/* Main Navbar */
 .navbar {
   position: fixed;
   top: 0;
@@ -32,7 +30,6 @@
   height: 72px;
 }
 
-/* Brand Section */
 .navbar-brand {
   flex-shrink: 0;
 }
@@ -87,7 +84,6 @@
   letter-spacing: 0.05em;
 }
 
-/* Desktop Navigation */
 .navbar-nav {
   flex: 1;
   display: flex;
@@ -161,7 +157,6 @@
   flex-shrink: 0;
 }
 
-/* Action Buttons */
 .navbar-actions {
   display: flex;
   align-items: center;
@@ -199,7 +194,6 @@
   height: 16px;
 }
 
-/* Mobile Toggle */
 .mobile-toggle {
   display: none;
   flex-direction: column;
@@ -238,7 +232,6 @@
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
-/* Mobile Navigation */
 .mobile-overlay {
   position: fixed;
   top: 72px;
@@ -349,7 +342,6 @@
   height: 20px;
 }
 
-/* Mobile Backdrop */
 .mobile-backdrop {
   position: fixed;
   top: 72px;
@@ -372,7 +364,6 @@
   }
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
   .navbar-container {
     padding: 0 20px;
@@ -427,7 +418,6 @@
   }
 }
 
-/* Focus States for Accessibility */
 .nav-link:focus,
 .logout-button:focus,
 .mobile-toggle:focus,
@@ -437,18 +427,17 @@
   outline-offset: 2px;
 }
 
-/* Smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
 }
 
-/* Body padding to account for fixed navbar */
-body {
+/* Only apply body padding when HomeNavbar is present */
+.home-page-body {
   padding-top: 72px;
 }
 
 @media (max-width: 768px) {
-  body {
+  .home-page-body {
     padding-top: 64px;
   }
 }
