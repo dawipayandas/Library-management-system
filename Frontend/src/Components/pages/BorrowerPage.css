@@ -189,6 +189,7 @@
 
 .book-item {
   background: white;
+  margin-top: 20px;
   padding: 28px 24px;
   border-radius: 20px;
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
